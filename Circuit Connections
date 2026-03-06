@@ -1,0 +1,37 @@
+SmartIOF Circuit Connections
+1. Microcontroller: ESP32 (NodeMCU / DevKit)
+Common Ground: All components share a common Ground (GND). Connect one GND pin from the ESP32 to the negative rail of your breadboard.
+
+2. DHT22 (Temperature & Humidity Sensor)
+VCC (Pin 1): Connect to 3V3 on the ESP32.
+
+DATA (Pin 2): Connect to D4 (GPIO 4) on the ESP32.
+
+GND (Pin 4): Connect to the common GND rail.
+
+3. MQ-135 (Air Quality / Gas Sensor)
+VCC: Connect to VIN (or 5V) on the ESP32.
+
+Note: The internal heater requires 5V to work properly; using 3.3V will cause inaccurate readings.
+
+GND: Connect to the common GND rail.
+
+A0 (Analog Out): Connect to D34 (GPIO 34) on the ESP32.
+
+D0 (Digital Out): Leave disconnected.
+
+4. Status LEDs
+Green LED (Safe / Warning): * Long leg (Anode): Connect to D18 (GPIO 18).
+
+Short leg (Cathode): Connect to the common GND rail through a 220Ω or 330Ω resistor.
+
+Red LED (Critical / Spoilage):
+
+Long leg (Anode): Connect to D19 (GPIO 19).
+
+Short leg (Cathode): Connect to the common GND rail through a 220Ω or 330Ω resistor.
+
+⚠️ Important Hardware Notes:
+ADC Pin Selection: We use GPIO 34 for the MQ-135 because it is part of the ADC1 channel. This ensures the analog readings remain reliable and stable even when the ESP32's WiFi radio is turned on.
+
+Warm-up Time: The MQ-135 sensor contains an internal heater. It requires a few minutes to heat up after powering on before the raw analog readings stabilize.
